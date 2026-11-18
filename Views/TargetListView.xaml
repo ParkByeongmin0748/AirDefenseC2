@@ -1,0 +1,41 @@
+<UserControl x:Class="AirDefenseC2.Views.TargetListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:AirDefenseC2.Converters">
+    <UserControl.Resources>
+        <converters:ThreatToColorConverter x:Key="ThreatBrush"/>
+    </UserControl.Resources>
+    <Border CornerRadius="9" Padding="14" Background="{StaticResource PanelBrush}" BorderThickness="1" BorderBrush="{StaticResource BorderBrush}">
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Top" Text="TRACK LIST / 표적 목록" FontSize="15" FontWeight="Bold" Margin="0,0,0,12"/>
+            <DataGrid ItemsSource="{Binding Targets}" SelectedItem="{Binding SelectedTarget, Mode=TwoWay}"
+                      AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False"
+                      HeadersVisibility="Column" GridLinesVisibility="Horizontal" RowHeight="34"
+                      Background="#0B1725" Foreground="White" BorderThickness="0"
+                      RowBackground="#0B1725" AlternatingRowBackground="#122338"
+                      HorizontalGridLinesBrush="#274056" VerticalGridLinesBrush="#274056">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#1D3950"/>
+                        <Setter Property="Foreground" Value="#EAF5FF"/>
+                        <Setter Property="Padding" Value="8"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
+                    <DataGridTextColumn Header="TYPE" Binding="{Binding Kind}" Width="*"/>
+                    <DataGridTextColumn Header="DIST (u)" Binding="{Binding Distance, StringFormat=F1}" Width="*"/>
+                    <DataGridTemplateColumn Header="STATUS" Width="1.25*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ThreatText}" FontWeight="Bold"
+                                           Foreground="{Binding Threat, Converter={StaticResource ThreatBrush}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Border>
+</UserControl>

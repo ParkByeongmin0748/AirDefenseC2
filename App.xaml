@@ -1,0 +1,31 @@
+<Application x:Class="AirDefenseC2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="PageBrush" Color="#0B1220"/>
+        <SolidColorBrush x:Key="PanelBrush" Color="#142133"/>
+        <SolidColorBrush x:Key="BorderBrush" Color="#294158"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#38BDF8"/>
+        <SolidColorBrush x:Key="TextBrush" Color="#ECF5FF"/>
+        <SolidColorBrush x:Key="MutedBrush" Color="#94AFC4"/>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#176A8F"/>
+            <Setter Property="BorderBrush" Value="#398CAD"/>
+            <Setter Property="Padding" Value="12,7"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.35"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Application.Resources>
+</Application>
